@@ -1,23 +1,25 @@
-import Nav from '@components/Nav';
-import '@styles/globals.css';
+import Nav from "@components/Nav";
+import Provider from "@components/Provider";
+import "@styles/globals.css";
 export const metadata = {
-  title: 'Simple Blog Post',
-  description: 'Discover and share Post',
-}
- 
+  title: "Simple Blog Post",
+  description: "Discover and share Post",
+};
+
 export default function RootLayout({ children }) {
- return (
+  return (
     <html lang="en">
       <body>
-        <div className='main'>
-          <div>
+        <Provider>
+          <div className="main">
+            <div></div>
           </div>
-        </div>
-        <main className='app'>
-          <Nav></Nav>
-          {children}
-        </main>
+          <main className="app">
+            <Nav></Nav>
+            {children}
+          </main>
+        </Provider>
       </body>
     </html>
-  )
+  );
 }
