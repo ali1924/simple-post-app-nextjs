@@ -9,29 +9,30 @@ const CreatePost = () => {
         post:'',
         tag:'',
     })
-    const createPost=(e)=>{
+    const createPost=async(e)=>{
         e.preventDefault();
         setSubmitting(true);
         console.log(post)
 
         //post api
-        try{
-            const response=await fetch('/api/post/new',{
-                method:"POST",
-                body:JSON.stringify({
-                    post:post.post,
-                    userId:session?.user.id,
-                    tag:post.tag,
-                })
-            })
-            if(response.ok){
-                router.push('/');
+        try {
+            const response = await fetch("/api/post/new", {
+              method: "POST",
+              body: JSON.stringify({
+                prompt: post.prompt,
+                userId: session?.user.id,
+                tag: post.tag,
+              }),
+            });
+      
+            if (response.ok) {
+              router.push("/");
             }
-        }catch(error){
+          } catch (error) {
             console.log(error);
-        }
-        
-
+          } finally {
+            setIsSubmitting(false);
+          }
     }
     console.log(post);
     return (
