@@ -47,6 +47,7 @@ const Nav = () => {
             <Link href="/profile">
               <Image
                 src={session?.user.image}
+                // src={"../public/assets/images/logo.svg"}
                 width={37}
                 height={37}
                 className="rounded-full"
@@ -56,6 +57,7 @@ const Nav = () => {
           </div>
         ) : (
           <>
+          {/* Sign in for Desktop */}
             {providers &&
               Object.values(providers).map((provider) => (
                 <button
@@ -79,9 +81,11 @@ const Nav = () => {
         {session?.user ? (
           <div className="flex">
             <Image
-              src="assets/images/logo.svg"
+              src={session?.user.image}
+              // src="assets/images/logo.svg"
               alt="Profile"
               width={37}
+              className="rounded-full"
               height={37}
               onClick={() => setToggleDropdown((prev) => !prev)}
             />
@@ -119,18 +123,20 @@ const Nav = () => {
           </div>
         ) : (
           <>
-            {/* Sign in */}
+            {/* Sign in for mobile*/}
             {providers &&
-              Object.values(providers).map((provider) => {
+              Object.values(providers).map((provider) => (
                 <button
                   type="button"
                   key={provider.name}
-                  onClick={() => signIn(provider.id)}
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
                   className="black_btn"
                 >
-                  Sign In
-                </button>;
-              })}
+                  Sign in
+                </button>
+              ))}
           </>
         )}
       </div>
